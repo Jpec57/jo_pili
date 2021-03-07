@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jo_pili/widgets/drawer.dart';
+import 'package:jpec_base/extensions/extension.dart';
 
 const blabla = """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec venenatis lacus. Maecenas posuere augue at felis convallis, sit amet hendrerit purus interdum. Etiam fringilla facilisis quam et accumsan. Phasellus lacus justo, commodo sit amet volutpat ut, vestibulum tincidunt mi. Duis ut arcu ac augue convallis commodo eget a arcu. Pellentesque vitae arcu iaculis, hendrerit mi nec, cursus ex. Nam vel ligula in lorem accumsan porta. Ut aliquet faucibus leo vel malesuada. Sed rhoncus, mauris in pulvinar convallis, ipsum purus ultricies ante, a pulvinar neque nisi dapibus justo. Curabitur venenatis viverra lorem, sit amet scelerisque libero consequat vel.
@@ -20,16 +21,43 @@ class HomePage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "A propos de moi",
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  if (constraints.maxWidth < 1000) {
+                    return Container();
+                  }
+                  return Row(
+                    children: [
+                      Image.asset("assets/images/jo.jpeg"),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "A propos de moi",
+                                style: context.textTheme.headline2,
+                              ),
+                              Text(
+                                "Ancien Boxeur professionnel et aujourd’hui préparateur mental certifié, coach professionnel ainsi que technicien en PNL.",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 30),
+                              ),
+                              Text(
+                                  "Je propose des séances de coaching en préparation mentale et développement personnel auprès d'un public varié allant du sportif, au manager, passant par l'entrepreneur ou l'étudiant."),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  );
+                },
+              ),
             ),
-            Image.asset("assets/images/jo.jpeg"),
-            Text(
-                "Ancien Boxeur professionnel et aujourd’hui préparateur mental certifié, coach professionnel ainsi que technicien en PNL."),
-            Text(
-                "Je propose des séances de coaching en préparation mentale et développement personnel auprès d'un public varié allant du sportif, au manager, passant par l'entrepreneur ou l'étudiant."),
             Text("Nous conviendrons ensemble d'un lieu de rendez-vous."),
             Text(
                 "J'utilise diverses méthodes au cours de mes séances telles que la relaxation, l'imagerie mentale, la fixation d'objectifs, l'activation et la réorientation du discours interne."),
@@ -38,11 +66,14 @@ class HomePage extends StatelessWidget {
             Text("Les séances peuvent être individuelles comme collectives."),
             Text(
                 "Ces méthodes sont adaptables à tout niveau et dans tous les sports ainsi que le monde de l'entreprise."),
-            Text("06 64 03 52 78"),
+            Text(
+              "06 64 03 52 78",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             Text(blabla),
           ],
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }

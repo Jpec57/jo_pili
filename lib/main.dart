@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jo_pili/pages/home/home_page.dart';
 import 'package:jo_pili/routes.dart';
-import 'package:jo_pili/widgets/drawer.dart';
+import 'package:get/get.dart' as routing;
 
 void main() {
   runApp(MyApp());
@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Joseph Pili',
       debugShowCheckedModeBanner: false,
+      navigatorKey: routing.Get.key,
       theme: ThemeData(
           primaryColor: Colors.black,
           primarySwatch: Colors.blue,
