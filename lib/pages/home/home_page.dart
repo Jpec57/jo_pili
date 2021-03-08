@@ -99,6 +99,21 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     );
   }
 
+  Widget banner(){
+    return Positioned(
+      top: 50,
+      child: Container(
+        height: 300,
+        width: 1000,
+        child: ClipPath(
+          clipper: DiagonalClipper(),
+          child: Image.asset("assets/images/ring.jpg",
+            fit: BoxFit.fill,
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,61 +121,39 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       appBar: AppBar(
         title: Text("A propos de moi"),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          color: Color(0xff50545C),
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 50),
-                child: Container(
-                  color: Color(0xff50545C),
+      body: Stack(
+        children: [
 
-                  child: Container(
-                    height: 300,
-                    width: 1000,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 0,
-                          child: ClipPath(
-                            clipper: DiagonalClipper(),
-                            child: Image.asset("assets/images/ring.jpg"
-                            ,        fit: BoxFit.fill,
+          SingleChildScrollView(
+            child: Container(
+              color: Color(0xff50545C),
+              child: Column(
+                children: <Widget>[
 
-                            ),
-                          ),
-                        ),
-                        Text("Test", style: TextStyle(shadows: [                        Shadow(
-                          offset: Offset(2.0, 2.0),
-                          blurRadius: 3.0,
-                          color: Colors.white,
-                        ),]),)],
-                    ),
+                  banner(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: aboutMeWidget(),
                   ),
-                ),
+                  Text("Nous conviendrons ensemble d'un lieu de rendez-vous."),
+                  Text(
+                      "J'utilise diverses méthodes au cours de mes séances telles que la relaxation, l'imagerie mentale, la fixation d'objectifs, l'activation et la réorientation du discours interne."),
+                  Text(
+                      "Vos objectifs peuvent être multiples et différents, comme par exemple la gestion du stress ou des émotions, le développement de la confiance en soi, de la concentration et de la relaxation, le tout dans une optique d'optimisation de la performance ou de bien-être."),
+                  Text("Les séances peuvent être individuelles comme collectives."),
+                  Text(
+                      "Ces méthodes sont adaptables à tout niveau et dans tous les sports ainsi que le monde de l'entreprise."),
+                  Text(
+                    "06 64 03 52 78",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(blabla),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: aboutMeWidget(),
-              ),
-              Text("Nous conviendrons ensemble d'un lieu de rendez-vous."),
-              Text(
-                  "J'utilise diverses méthodes au cours de mes séances telles que la relaxation, l'imagerie mentale, la fixation d'objectifs, l'activation et la réorientation du discours interne."),
-              Text(
-                  "Vos objectifs peuvent être multiples et différents, comme par exemple la gestion du stress ou des émotions, le développement de la confiance en soi, de la concentration et de la relaxation, le tout dans une optique d'optimisation de la performance ou de bien-être."),
-              Text("Les séances peuvent être individuelles comme collectives."),
-              Text(
-                  "Ces méthodes sont adaptables à tout niveau et dans tous les sports ainsi que le monde de l'entreprise."),
-              Text(
-                "06 64 03 52 78",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(blabla),
-            ],
+            ),
           ),
-        ),
-      ),
+        ],
+      )
     );
   }
 }
