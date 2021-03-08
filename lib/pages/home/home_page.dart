@@ -116,17 +116,27 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 child: Container(
                   color: Color(0xff50545C),
 
-                  child: Stack(
-                    children: [
-                      ClipPath(
-                        clipper: DiagonalClipper(),
-                        child: Image.asset("assets/images/ring.jpg"),
-                      ),
-                      Text("Test", style: TextStyle(shadows: [                        Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 3.0,
-                        color: Colors.white,
-                      ),]),)],
+                  child: Container(
+                    height: 300,
+                    width: 1000,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          top: 0,
+                          child: ClipPath(
+                            clipper: DiagonalClipper(),
+                            child: Image.asset("assets/images/ring.jpg"
+                            ,        fit: BoxFit.fill,
+
+                            ),
+                          ),
+                        ),
+                        Text("Test", style: TextStyle(shadows: [                        Shadow(
+                          offset: Offset(2.0, 2.0),
+                          blurRadius: 3.0,
+                          color: Colors.white,
+                        ),]),)],
+                    ),
                   ),
                 ),
               ),
