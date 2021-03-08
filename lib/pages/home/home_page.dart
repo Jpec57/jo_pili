@@ -1,5 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:jo_pili/AppColors.dart';
 import 'package:jo_pili/pages/clippers/diagonal_clipper.dart';
+import 'package:jo_pili/pages/clippers/diagonal_corner_clipper.dart';
 import 'package:jo_pili/widgets/drawer.dart';
 import 'package:jpec_base/extensions/extension.dart';
 
@@ -19,6 +23,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+  Color backgroundColor = AppColors.greyBlack;
+
   late AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 2),
     vsync: this,
@@ -32,66 +38,60 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     curve: Curves.elasticIn,
   ));
 
+  Widget _aboutMeTextWidget(){
+    return Padding(
+        padding: const EdgeInsets.all(8.0),
+      child: AnimatedContainer(
+        duration: Duration(seconds: 1),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Text(
+                  "A propos de moi",
+                  style: context.textTheme.headline2,
+                ),
+              ),
+              Text(
+                "Ancien Boxeur professionnel et aujourd’hui préparateur mental certifié, coach professionnel ainsi que technicien en PNL.",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+              Text(
+                  "Je propose des séances de coaching en préparation mentale et développement personnel auprès d'un public varié allant du sportif, au manager, passant par l'entrepreneur ou l'étudiant."),
+            ],
+          ),
+        ),
+      ));
+  }
+
+  Widget _aboutMePicture(){
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+        child: Image.asset("assets/images/jo.jpeg", width: 400,));
+  }
+
   Widget aboutMeWidget(){
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth < 1000) {
+        if (constraints.maxWidth < 600) {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset("assets/images/jo.jpeg"),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: AnimatedContainer(
-                  duration: Duration(seconds: 1),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "A propos de moi",
-                        style: context.textTheme.headline2,
-                      ),
-                      Text(
-                        "Ancien Boxeur professionnel et aujourd’hui préparateur mental certifié, coach professionnel ainsi que technicien en PNL.",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30),
-                      ),
-                      Text(
-                          "Je propose des séances de coaching en préparation mentale et développement personnel auprès d'un public varié allant du sportif, au manager, passant par l'entrepreneur ou l'étudiant."),
-                    ],
-                  ),
-                ),
-              )
+              _aboutMePicture(),
+        _aboutMeTextWidget(),
+
             ],);
         }
         return Row(
           children: [
-            Image.asset("assets/images/jo.jpeg"),
+            _aboutMePicture(),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: AnimatedContainer(
-                  duration: Duration(seconds: 1),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "A propos de moi",
-                        style: context.textTheme.headline2,
-                      ),
-                      Text(
-                        "Ancien Boxeur professionnel et aujourd’hui préparateur mental certifié, coach professionnel ainsi que technicien en PNL.",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30),
-                      ),
-                      Text(
-                          "Je propose des séances de coaching en préparation mentale et développement personnel auprès d'un public varié allant du sportif, au manager, passant par l'entrepreneur ou l'étudiant."),
-                    ],
-                  ),
-                ),
-              ),
+              child: _aboutMeTextWidget(),
             )
           ],
         );
@@ -99,60 +99,99 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     );
   }
 
-  Widget banner(){
+
+  Widget _renderBackgroundFixedImage(double width){
     return Positioned(
-      top: 50,
+      top: - 0.05 * width,
       child: Container(
-        height: 300,
-        width: 1000,
-        child: ClipPath(
-          clipper: DiagonalClipper(),
-          child: Image.asset("assets/images/ring.jpg",
-            fit: BoxFit.fill,
+        height: width / 2,
+        child: AspectRatio(
+          aspectRatio: 2/1,
+          child: Image.asset("assets/images/paysage.jpeg",
+            fit: BoxFit.fitWidth,
           ),
         ),
       ),
     );
   }
 
+  Widget _renderBackgroundClipper(double width){
+    return Column(
+      children: [
+        Container(
+          height: 0.05 * width, width: width, color: backgroundColor,
+        ),
+        ClipPath(
+          clipper: DiagonalCornerClipper(),
+          child: Container(
+            height: 300,
+            width: width,
+            decoration: BoxDecoration(color: backgroundColor),
+          ),
+        )
+      ],
+    );
+  }
+
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: AppBar(
-        title: Text("A propos de moi"),
+        title: Text("Jo Pili"),
       ),
-      body: Stack(
-        children: [
+      body: Container(
+        color: backgroundColor,
+        width: width,
+        child: Stack(
+          children: [
+            _renderBackgroundFixedImage(width),
+            SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    _renderBackgroundClipper(width),
+                    //Blur test
+                    // BackdropFilter(
+                    //     filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                    //     child: banner()),
+                    Container(
+                      color: backgroundColor,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: aboutMeWidget(),
+                          ),
+                          Column(
+                            children: [
+                              Text("Nous conviendrons ensemble d'un lieu de rendez-vous."),
+                              Text(
+                                  "J'utilise diverses méthodes au cours de mes séances telles que la relaxation, l'imagerie mentale, la fixation d'objectifs, l'activation et la réorientation du discours interne."),
+                              Text(
+                                  "Vos objectifs peuvent être multiples et différents, comme par exemple la gestion du stress ou des émotions, le développement de la confiance en soi, de la concentration et de la relaxation, le tout dans une optique d'optimisation de la performance ou de bien-être."),
+                              Text("Les séances peuvent être individuelles comme collectives."),
+                              Text(
+                                  "Ces méthodes sont adaptables à tout niveau et dans tous les sports ainsi que le monde de l'entreprise."),
+                            ],
+                          ),
+                          Text(
+                            "06 64 03 52 78",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(blabla)
+                        ],),
+                      ),
+                    ),
 
-          SingleChildScrollView(
-            child: Container(
-              color: Color(0xff50545C),
-              child: Column(
-                children: <Widget>[
-
-                  banner(),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: aboutMeWidget(),
-                  ),
-                  Text("Nous conviendrons ensemble d'un lieu de rendez-vous."),
-                  Text(
-                      "J'utilise diverses méthodes au cours de mes séances telles que la relaxation, l'imagerie mentale, la fixation d'objectifs, l'activation et la réorientation du discours interne."),
-                  Text(
-                      "Vos objectifs peuvent être multiples et différents, comme par exemple la gestion du stress ou des émotions, le développement de la confiance en soi, de la concentration et de la relaxation, le tout dans une optique d'optimisation de la performance ou de bien-être."),
-                  Text("Les séances peuvent être individuelles comme collectives."),
-                  Text(
-                      "Ces méthodes sont adaptables à tout niveau et dans tous les sports ainsi que le monde de l'entreprise."),
-                  Text(
-                    "06 64 03 52 78",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(blabla),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       )
     );
   }
