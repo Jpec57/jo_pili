@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jo_pili/AppColors.dart';
 import 'package:jo_pili/widgets/drawer.dart';
 
 //Reportage france 3 FLORA
@@ -15,7 +16,15 @@ class CoachingPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Coaching"),
       ),
-      body: Container(),
+      body: Container(
+        color: AppColors.greyBlack,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [],
+          ),
+        ),
+      ),
     );
   }
 }
