@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jo_pili/AppColors.dart';
 import 'package:jo_pili/pages/clippers/diagonal_corner_clipper.dart';
-import 'package:jo_pili/widgets/drawer.dart';
-import 'package:jpec_base/extensions/extension.dart';
+import 'package:jo_pili/routes.dart';
+import 'package:jo_pili/widgets/nav_bar.dart';
 
 part 'about_me.dart';
 part 'fixed_background_image.dart';
@@ -29,8 +29,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  Color backgroundColor = AppColors.greyBlack;
-
   late AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 5),
     vsync: this,
@@ -70,80 +68,72 @@ class _HomePageState extends State<HomePage>
 
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-        drawer: CustomDrawer(),
-        appBar: AppBar(
-          title: Text("Jo Pili"),
+        body: Column(
+      children: [
+        NavBar(
+          currentRouteName: routeHome,
         ),
-        body: Container(
-          color: backgroundColor,
-          width: width,
-          height: height,
-          child: Stack(
-            children: [
-              _renderBackgroundFixedImage(width),
-              SingleChildScrollView(
-                child: Container(
-                  // color: backgroundColor,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      _renderBackgroundClipper(backgroundColor, width),
-                      //Blur test
-                      Container(
-                        color: backgroundColor,
-                        child: Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 20, bottom: 20),
-                                child: aboutMeWidget(context, _offsetAnimation),
-                              ),
-                              Column(
-                                children: [
-                                  _renderBulletPoint(Text(rdv_place)),
-                                  _renderBulletPoint(Text(method_used)),
-                                  _renderBulletPoint(Text(goal)),
-                                  _renderBulletPoint(Text(individual_or_group)),
-                                  _renderBulletPoint(Text(adaptative)),
-                                ],
-                              ),
-                              //   Container(
-                              //     height: 300,
-                              //     width: 300,
-                              //     decoration: BoxDecoration(
-                              //       image: DecorationImage(image: AssetImage(
-                              //         "assets/images/paysage.jpeg",
-                              //
-                              //       ))
-                              //     ),
-                              //     child: BackdropFilter(
-                              //   filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                              // child: Container()),
-                              //   )
-                              //   ,
-                              Padding(
-                                padding: const EdgeInsets.only(top: 24),
-                                child: Text(
-                                  "Contact: 06 64 03 52 78",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30),
+        Expanded(
+          child: Container(
+            color: AppColors.backgroundColor,
+            child: Stack(
+              children: [
+                _renderBackgroundFixedImage(width),
+                SingleChildScrollView(
+                  child: Container(
+                    // color: backgroundColor,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        _renderBackgroundClipper(
+                            AppColors.backgroundColor, width),
+                        //Blur test
+                        Container(
+                          color: AppColors.backgroundColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, bottom: 20),
+                                  child:
+                                      aboutMeWidget(context, _offsetAnimation),
                                 ),
-                              ),
-                            ],
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    _renderBulletPoint(Text(rdv_place)),
+                                    _renderBulletPoint(Text(method_used)),
+                                    _renderBulletPoint(Text(goal)),
+                                    _renderBulletPoint(
+                                        Text(individual_or_group)),
+                                    _renderBulletPoint(Text(adaptative)),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 24),
+                                  child: Text(
+                                    "Contact: 06 64 03 52 78",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ));
+        ),
+      ],
+    ));
   }
 }

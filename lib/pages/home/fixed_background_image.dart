@@ -26,7 +26,7 @@ Widget _renderBackgroundClipper(Color backgroundColor, double width) {
         color: backgroundColor,
       ),
       ClipPath(
-        clipBehavior: Clip.antiAlias,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         clipper: DiagonalCornerClipper(),
         child: Container(
           height: 300,

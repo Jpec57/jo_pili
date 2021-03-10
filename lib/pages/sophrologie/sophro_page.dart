@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jo_pili/widgets/drawer.dart';
+import 'package:jo_pili/AppColors.dart';
+import 'package:jo_pili/routes.dart';
+import 'package:jo_pili/widgets/nav_bar.dart';
 
 const toto = """
 
@@ -64,11 +66,22 @@ class SophroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CustomDrawer(),
-      appBar: AppBar(
-        title: Text("Sophrologie"),
+      body: Column(
+        children: [
+          NavBar(currentRouteName: routeSophro),
+          Expanded(
+            child: Container(
+              color: AppColors.backgroundColor,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[Text("Sophro")],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
-      body: Container(),
     );
   }
 }
