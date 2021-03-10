@@ -17,16 +17,13 @@ class DiagonalClipper extends CustomClipper<Path> {
     return new Path()
       ..lineTo(0.0, levelDifference)
       ..lineTo(0.0, size.height)
-    ..lineTo(size.width, size.height - levelDifference)
-    ..lineTo(size.width, 0.0)
-    ..lineTo(0.0, levelDifference)
+      ..lineTo(size.width, size.height - levelDifference)
+      ..lineTo(size.width, 0.0)
+      ..lineTo(0.0, levelDifference)
       ..fillType = PathFillType.evenOdd
-
-    ..close();
+      ..close();
   }
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
-
 }
-

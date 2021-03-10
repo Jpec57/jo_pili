@@ -13,7 +13,7 @@ Widget _aboutMeTextWidget(BuildContext context, Animation<Offset> offset) {
               child: Text(
                 "A propos de moi",
                 textAlign: TextAlign.start,
-                style: context.textTheme.headline2,
+                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, fontFamily: "Futura"),
               ),
             ),
             Text(

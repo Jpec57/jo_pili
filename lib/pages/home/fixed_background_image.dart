@@ -2,6 +2,7 @@ part of 'home_page.dart';
 
 Widget _renderBackgroundFixedImage(double width) {
   return Positioned(
+    // top: 0,
     top: -0.05 * width,
     child: Container(
       height: width / 2,

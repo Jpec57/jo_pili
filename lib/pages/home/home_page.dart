@@ -91,9 +91,6 @@ class _HomePageState extends State<HomePage>
                     children: <Widget>[
                       _renderBackgroundClipper(backgroundColor, width),
                       //Blur test
-                      // BackdropFilter(
-                      //     filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                      //     child: banner()),
                       Container(
                         color: backgroundColor,
                         child: Padding(
@@ -114,6 +111,20 @@ class _HomePageState extends State<HomePage>
                                   _renderBulletPoint(Text(adaptative)),
                                 ],
                               ),
+                              //   Container(
+                              //     height: 300,
+                              //     width: 300,
+                              //     decoration: BoxDecoration(
+                              //       image: DecorationImage(image: AssetImage(
+                              //         "assets/images/paysage.jpeg",
+                              //
+                              //       ))
+                              //     ),
+                              //     child: BackdropFilter(
+                              //   filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                              // child: Container()),
+                              //   )
+                              //   ,
                               Padding(
                                 padding: const EdgeInsets.only(top: 24),
                                 child: Text(
