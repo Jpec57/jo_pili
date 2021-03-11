@@ -7,7 +7,8 @@ class NavBar extends StatelessWidget {
   final String currentRouteName;
   const NavBar({Key? key, required this.currentRouteName}) : super(key: key);
 
-  Widget _renderNavTabButton(String sectionName, String route) {
+  Widget _renderNavTabButton(
+      BuildContext context, String sectionName, String route) {
     bool isSelected = route == currentRouteName;
 
     return InkWell(
@@ -57,9 +58,9 @@ class NavBar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _renderNavTabButton('Accueil', routeHome),
-                    _renderNavTabButton('Sophrologie', routeSophro),
-                    _renderNavTabButton('Coaching', routeCoaching),
+                    _renderNavTabButton(context, 'Accueil', routeHome),
+                    _renderNavTabButton(context, 'Sophrologie', routeSophro),
+                    _renderNavTabButton(context, 'Coaching', routeCoaching),
                   ],
                 ),
               ),

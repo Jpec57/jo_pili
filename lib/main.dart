@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' as routing;
-import 'package:jo_pili/pages/home/home_page.dart';
+import 'package:jo_pili/pages/coaching/coaching_page.dart';
 import 'package:jo_pili/routes.dart';
+import 'package:jo_pili/routing/transitions/no_transition.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +24,16 @@ class MyApp extends StatelessWidget {
             bodyText2: TextStyle(color: Colors.black, fontSize: 18),
           ).apply(fontFamily: 'Roboto')),
       onGenerateRoute: RouteGenerator.generateRoute,
-      home: HomePage(),
+      initialRoute: routeCoaching,
+      // initialRoute: routeHome,
+      onGenerateInitialRoutes: (route) {
+        return [
+          NoTransitionRoute(builder: (_) => CoachingPage()
+              // HomePage()
+              )
+        ];
+      },
+      // home: HomePage(),
     );
   }
 }
