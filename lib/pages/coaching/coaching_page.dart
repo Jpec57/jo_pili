@@ -146,25 +146,17 @@ class _CoachingPageState extends State<CoachingPage> {
   Widget _renderSection(
       String imagePath, bool isEven, String title, List<String> points) {
 
-    List<Widget> children = [];
+    List<Widget> children = [
+      Expanded(
+          child: Image.asset(
+              imagePath)
+      ),
+      _renderCoachingEnumWidget(
+          title,
+          points),
+    ];
     if (isEven){
-      children = [_renderCoachingEnumWidget(
-          title,
-          points),
-    Expanded(
-    child: Image.asset(
-    imagePath)
-    )];
-    } else {
-      children = [
-        Expanded(
-            child: Image.asset(
-                imagePath)
-        ),
-        _renderCoachingEnumWidget(
-          title,
-          points),
-        ];
+      children = children.reversed.toList();
     }
     return Padding(
       padding: EdgeInsets.only(bottom: 24),
