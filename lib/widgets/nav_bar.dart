@@ -39,7 +39,7 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: AppColors.darkGrey,
+        color: AppColors.darkerGrey,
         border: Border.all(color: Colors.black),
         borderRadius: BorderRadius.zero,
         boxShadow: <BoxShadow>[
@@ -52,8 +52,8 @@ class NavBar extends StatelessWidget {
             ),
           ),
         ],
-          // boxShadow:
-          ),
+        // boxShadow:
+      ),
       child: Container(
         height: 100,
         child: Row(
@@ -75,14 +75,18 @@ class NavBar extends StatelessWidget {
   Widget _renderNavButtons(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth < 750){
+        if (constraints.maxWidth < 750) {
           return Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
-                child: IconButton(icon: Icon(Icons.menu, size: 40,), onPressed: (){
-                }),
+                child: IconButton(
+                    icon: Icon(
+                      Icons.menu,
+                      size: 40,
+                    ),
+                    onPressed: () {}),
               ),
             ],
           );
