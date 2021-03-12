@@ -15,7 +15,6 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^7.0.0-nullsafety.3
   get: ^4.0.0-nullsafety.2
-  youtube_player_iframe: 1.2.0+2
   jpec_base:
     git:
       url: https://github.com/Jpec57/jpec_base.git
