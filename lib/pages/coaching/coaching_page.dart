@@ -130,9 +130,12 @@ class _CoachingPageState extends State<CoachingPage> {
       padding: EdgeInsets.only(bottom: 24),
       child: Column(
         children: [
-          Text(
-            title,
-            style: TextStyle(fontFamily: 'Helvetica', fontSize: 30),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16.0),
+            child: Text(
+              title,
+              style: TextStyle(fontFamily: 'Futura', fontSize: 30),
+            ),
           ),
           ...points.map((point) => Padding(
                 padding: EdgeInsets.symmetric(vertical: 8.0),
@@ -146,14 +149,27 @@ class _CoachingPageState extends State<CoachingPage> {
   Widget _renderSection(
       String imagePath, bool isEven, String title, List<String> points) {
 
+    const margin = 20.0;
+
     List<Widget> children = [
       Expanded(
-          child: Image.asset(
-              imagePath)
+          child: Padding(
+            padding: EdgeInsets.only(left: isEven == true ? margin : 0.0, right: isEven == true ? 0.0 : margin),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                  imagePath),
+            ),
+          )
       ),
-      _renderCoachingEnumWidget(
-          title,
-          points),
+      Expanded(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: _renderCoachingEnumWidget(
+              title,
+              points),
+        ),
+      ),
     ];
     if (isEven){
       children = children.reversed.toList();
@@ -187,7 +203,7 @@ class _CoachingPageState extends State<CoachingPage> {
                     Column(
                       children: [
                         _renderSection("assets/images/mental_pro.jpg", true, service_title_understand, [understand_part_1, understand_part_2]),
-                        _renderSection("assets/images/mental_pro.jpg", false, service_title_develop, [
+                        _renderSection("assets/images/republicain.jpg", false, service_title_develop, [
                           develop_part1,
                           develop_part2,
                           develop_part3,
@@ -196,7 +212,7 @@ class _CoachingPageState extends State<CoachingPage> {
                           develop_part6,
                           develop_part7
                         ]),
-                        _renderSection("assets/images/mental_pro.jpg", true, service_title_train, [
+                        _renderSection("assets/images/ring.jpg", true, service_title_train, [
                           train_part1,
                           train_part2,
                           train_part3,

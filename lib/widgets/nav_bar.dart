@@ -39,7 +39,19 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: AppColors.darkGrey, border: Border.all(color: Colors.black)
+          color: AppColors.darkGrey,
+        border: Border.all(color: Colors.black),
+        borderRadius: BorderRadius.zero,
+        boxShadow: <BoxShadow>[
+          new BoxShadow(
+            color: Colors.black54,
+            blurRadius: 20.0,
+            offset: Offset(
+              5.0,
+              5.0,
+            ),
+          ),
+        ],
           // boxShadow:
           ),
       child: Container(
@@ -52,22 +64,39 @@ class NavBar extends StatelessWidget {
                 },
                 child: Image.asset("assets/images/bannier.png")),
             Expanded(
-              child: Container(
-                // color: Colors.green,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    _renderNavTabButton(context, 'Accueil', routeHome),
-                    _renderNavTabButton(context, 'Sophrologie', routeSophro),
-                    _renderNavTabButton(context, 'Coaching', routeCoaching),
-                  ],
-                ),
-              ),
+              child: _renderNavButtons(context),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _renderNavButtons(BuildContext context) {
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        if (constraints.maxWidth < 750){
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: IconButton(icon: Icon(Icons.menu, size: 40,), onPressed: (){
+                }),
+              ),
+            ],
+          );
+        }
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _renderNavTabButton(context, 'Accueil', routeHome),
+            _renderNavTabButton(context, 'Sophrologie', routeSophro),
+            _renderNavTabButton(context, 'Coaching', routeCoaching),
+          ],
+        );
+      },
     );
   }
 }
