@@ -125,6 +125,55 @@ class _CoachingPageState extends State<CoachingPage> {
     );
   }
 
+  Widget _renderCoachingEnumWidget(String title, List<String> points) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 24),
+      child: Column(
+        children: [
+          Text(
+            title,
+            style: TextStyle(fontFamily: 'Helvetica', fontSize: 30),
+          ),
+          ...points.map((point) => Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
+                child: Text(point),
+              ))
+        ],
+      ),
+    );
+  }
+
+  Widget _renderSection(
+      String imagePath, bool isEven, String title, List<String> points) {
+
+    List<Widget> children = [];
+    if (isEven){
+      children = [_renderCoachingEnumWidget(
+          title,
+          points),
+    Expanded(
+    child: Image.asset(
+    imagePath)
+    )];
+    } else {
+      children = [
+        Expanded(
+            child: Image.asset(
+                imagePath)
+        ),
+        _renderCoachingEnumWidget(
+          title,
+          points),
+        ];
+    }
+    return Padding(
+      padding: EdgeInsets.only(bottom: 24),
+      child: Row(
+        children: children,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,17 +193,30 @@ class _CoachingPageState extends State<CoachingPage> {
                       child: generateBlurredImage(),
                     ),
                     Column(
-                      children: [Text("A")],
+                      children: [
+                        _renderSection("assets/images/mental_pro.jpg", true, service_title_understand, [understand_part_1, understand_part_2]),
+                        _renderSection("assets/images/mental_pro.jpg", false, service_title_develop, [
+                          develop_part1,
+                          develop_part2,
+                          develop_part3,
+                          develop_part4,
+                          develop_part5,
+                          develop_part6,
+                          develop_part7
+                        ]),
+                        _renderSection("assets/images/mental_pro.jpg", true, service_title_train, [
+                          train_part1,
+                          train_part2,
+                          train_part3,
+                          train_part4,
+                          train_part5,
+                          train_part6
+                        ]),
+                      ],
+
                     ),
-                    Container(
-                        height: 200,
-                        color: Colors.red,
-                        child: Image.asset(
-                          "assets/images/mental_pro.jpg",
-                          fit: BoxFit.none,
-                        )),
-                    Image.asset("assets/images/republicain.jpg"),
                   ],
+
                 ),
               ),
             ),
