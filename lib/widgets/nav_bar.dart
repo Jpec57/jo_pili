@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jo_pili/AppColors.dart';
+import 'package:jo_pili/constants.dart';
 import 'package:jo_pili/routes.dart';
 
 class NavBar extends StatelessWidget {
@@ -75,31 +76,40 @@ class NavBar extends StatelessWidget {
   Widget _renderNavButtons(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth < 750) {
+        if (constraints.maxWidth < AppConstants.navbar_breakpoint) {
           return Row(
-            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: IconButton(
-                    icon: Icon(
-                      Icons.menu,
-                      size: 40,
-                    ),
-                    onPressed: () {}),
+              Expanded(
+                  flex: 4,
+                  child: Center(
+                      child: Text(
+                    RouteGenerator.getRouteInfosFromPath(currentRouteName)
+                        .title,
+                    style: Theme.of(context).textTheme.headline2,
+                  ))),
+              Expanded(
+                flex: 1,
+                child: Center(
+                  child: IconButton(
+                      icon: Icon(
+                        Icons.menu,
+                        size: 40,
+                      ),
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      }),
+                ),
               ),
             ],
           );
         }
         return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _renderNavTabButton(context, 'Accueil', routeHome),
-            _renderNavTabButton(context, 'Sophrologie', routeSophro),
-            _renderNavTabButton(context, 'Coaching', routeCoaching),
-          ],
-        );
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: RouteGenerator.getMainNavigationRoutes()
+                .map((RouteInfos routeInfos) => _renderNavTabButton(
+                    context, routeInfos.title, routeInfos.path))
+                .toList());
       },
     );
   }

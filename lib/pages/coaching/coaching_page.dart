@@ -6,6 +6,7 @@ import 'package:jo_pili/AppColors.dart';
 import 'package:jo_pili/pages/coaching/coaching_carousel.dart';
 import 'package:jo_pili/pages/coaching/coaching_target.dart';
 import 'package:jo_pili/routes.dart';
+import 'package:jo_pili/widgets/main_drawer.dart';
 import 'package:jo_pili/widgets/nav_bar.dart';
 
 //Reportage france 3 FLORA
@@ -82,6 +83,7 @@ class _CoachingPageState extends State<CoachingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MainDrawer(),
       body: Column(
         children: [
           NavBar(currentRouteName: routeCoaching),

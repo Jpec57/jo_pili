@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' as routing;
-import 'package:jo_pili/pages/home/home_page.dart';
+import 'package:jo_pili/pages/sophrologie/sophro_page.dart';
 import 'package:jo_pili/routes.dart';
 import 'package:jo_pili/routing/transitions/no_transition.dart';
 
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       // initialRoute: routeHome,
       onGenerateInitialRoutes: (route) {
         return [
-          NoTransitionRoute(builder: (_) => HomePage()
+          NoTransitionRoute(builder: (_) => SophroPage()
               // HomePage()
               )
         ];

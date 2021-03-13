@@ -11,6 +11,14 @@ const String routeHome = '/home';
 const String routeSophro = '/sophrologie';
 const String routeCoaching = '/coaching';
 
+class RouteInfos {
+  final String title;
+  final String path;
+  final Widget? icon;
+
+  RouteInfos({required this.title, required this.path, this.icon});
+}
+
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     print("setting name ${settings.name}");
@@ -29,5 +37,29 @@ class RouteGenerator {
       default:
         throw new Exception("Need to implement page ${settings.name}");
     }
+  }
+
+  static List<RouteInfos> getMainNavigationRoutes() {
+    return [
+      RouteInfos(title: 'Accueil', path: routeHome, icon: Icon(Icons.home)),
+      RouteInfos(
+          title: 'Sophrologie',
+          path: routeSophro,
+          icon: Icon(Icons.attribution_rounded)),
+      RouteInfos(
+          title: 'Coaching',
+          path: routeCoaching,
+          icon: Icon(Icons.fitness_center_rounded)),
+    ];
+  }
+
+  static RouteInfos getRouteInfosFromPath(String path) {
+    List<RouteInfos> routeInfos = getMainNavigationRoutes();
+    for (RouteInfos route in routeInfos) {
+      if (route.path == path) {
+        return route;
+      }
+    }
+    return RouteInfos(title: "404", path: "");
   }
 }
