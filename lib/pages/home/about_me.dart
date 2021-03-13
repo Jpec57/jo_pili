@@ -12,14 +12,11 @@ Widget _aboutMeTextWidget(BuildContext context, Animation<Offset> offset) {
             child: Text(
               "A propos de moi",
               textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Futura"),
+              style: Theme.of(context).textTheme.headline1,
             ),
           ),
           Text(
-            "Ancien Boxeur professionnel et aujourd’hui préparateur mental certifié, coach professionnel ainsi que technicien en PNL.",
+            "Ancien sportif de haut niveau et aujourd’hui, sophrologue, préparateur mental certifié ainsi que coach professionnel et particulier",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
           Padding(

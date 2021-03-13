@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jo_pili/AppColors.dart';
-import 'package:jo_pili/pages/clippers/diagonal_corner_clipper.dart';
 import 'package:jo_pili/routes.dart';
 import 'package:jo_pili/widgets/nav_bar.dart';
 
@@ -18,7 +17,7 @@ const goal =
 const individual_or_group =
     "Les séances peuvent être individuelles comme collectives.";
 const adaptative =
-    "Ces méthodes sont adaptables à tout niveau et dans tous les sports ainsi que le monde de l'entreprise.";
+    "Ces méthodes sont adaptables à tout niveau et dans tous les sports ainsi que le monde de l'entreprise, l'étudiant , l'enfant et le particulier . ";
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -110,7 +109,11 @@ class _HomePageState extends State<HomePage>
                                     _renderBulletPoint(Text(goal)),
                                     _renderBulletPoint(
                                         Text(individual_or_group)),
-                                    _renderBulletPoint(Text(adaptative)),
+                                    _renderBulletPoint(Text(
+                                      adaptative,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    )),
                                   ],
                                 ),
                                 Padding(

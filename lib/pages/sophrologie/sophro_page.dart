@@ -18,7 +18,7 @@ class SophroPage extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[Text("Sophro")],
+                  children: <Widget>[Text("Qu’est-ce que la sophrologie ?")],
                 ),
               ),
             ),
