@@ -94,7 +94,10 @@ class _HomePageState extends State<HomePage>
                             Container(
                               color: AppColors.backgroundColor,
                               child: Padding(
-                                padding: const EdgeInsets.all(20),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal:
+                                        MediaQuery.of(context).size.width *
+                                            0.1),
                                 child: Column(
                                   children: [
                                     Padding(
@@ -105,7 +108,7 @@ class _HomePageState extends State<HomePage>
                                     ),
                                     Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                          CrossAxisAlignment.stretch,
                                       children: [
                                         _renderBulletPoint(Text(rdv_place)),
                                         _renderBulletPoint(Text(method_used)),

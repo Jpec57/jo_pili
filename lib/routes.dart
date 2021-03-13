@@ -24,7 +24,7 @@ class RouteGenerator {
     print("setting name ${settings.name}");
     switch (settings.name) {
       case routeCoaching:
-        html.window.history.pushState(null, "Coahing", routeCoaching);
+        html.window.history.pushState(null, "Coaching", routeCoaching);
         return NoTransitionRoute(builder: (_) => CoachingPage());
       case routeHome:
         html.window.history.pushState(null, "Accueil", routeHome);
