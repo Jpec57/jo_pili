@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jo_pili/routes.dart';
 import 'package:jo_pili/routing/app_route_path.dart';
+import 'package:jo_pili/routing/bloc/app_config_bloc.dart';
 import 'package:jo_pili/routing/pages/coaching_router_page.dart';
 import 'package:jo_pili/routing/pages/home_router_page.dart';
 import 'package:jo_pili/routing/pages/not_found_router_page.dart';
@@ -35,29 +37,36 @@ class MyRouterDelegate extends RouterDelegate<AppRoutePath>
 
   @override
   Widget build(BuildContext context) {
-    return Navigator(
-      pages: [
-        if (show404 == true)
-          NotFoundRouterPage(_handlePageChange)
-        else if (_selectedPage == routeSophro)
-          SophroRouterPage(_handlePageChange)
-        else if (_selectedPage == routeCoaching)
-          CoachingRouterPage(_handlePageChange)
-        else if (_selectedPage == routeHome)
-          HomeRouterPage(_handlePageChange)
-        else
-          NotFoundRouterPage(_handlePageChange)
-      ],
-      onPopPage: (route, result) {
-        //TODO never called...
-        if (!route.didPop(result)) {
-          return false;
-        }
-        show404 = false;
-        _selectedPage = route.settings.name ?? routeHome;
-        notifyListeners();
-        return true;
-      },
+    return BlocProvider<AppConfigBloc>(
+      create: (_) => AppConfigBloc(_handlePageChange),
+      child: BlocBuilder<AppConfigBloc, AppConfigState>(
+        builder: (BuildContext context, state) {
+          return Navigator(
+            pages: [
+              if (show404 == true)
+                NotFoundRouterPage(_handlePageChange)
+              else if (_selectedPage == routeSophro)
+                SophroRouterPage(_handlePageChange)
+              else if (_selectedPage == routeCoaching)
+                CoachingRouterPage(_handlePageChange)
+              else if (_selectedPage == routeHome)
+                HomeRouterPage(_handlePageChange)
+              else
+                NotFoundRouterPage(_handlePageChange)
+            ],
+            onPopPage: (route, result) {
+              //TODO never called...
+              if (!route.didPop(result)) {
+                return false;
+              }
+              show404 = false;
+              _selectedPage = route.settings.name ?? routeHome;
+              notifyListeners();
+              return true;
+            },
+          );
+        },
+      ),
     );
   }
 

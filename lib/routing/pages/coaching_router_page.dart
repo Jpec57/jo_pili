@@ -13,7 +13,6 @@ class CoachingRouterPage extends Page {
       pageBuilder: (context, animation, animation2) {
         return CoachingPage(
           key: ValueKey("CoachingPage"),
-          onPageChanged: onPageChanged,
         );
       },
     );

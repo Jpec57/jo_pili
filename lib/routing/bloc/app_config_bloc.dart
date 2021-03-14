@@ -12,17 +12,17 @@ part 'app_config_event.dart';
 part 'app_config_state.dart';
 
 class AppConfigBloc extends Bloc<AppConfigEvent, AppConfigState> {
-  AppConfigBloc() : super(AppConfigInitial());
+  final ValueChanged<String> onPageChanged;
+
+  AppConfigBloc(this.onPageChanged) : super(AppConfigInitial(onPageChanged));
 
   @override
   Stream<AppConfigState> mapEventToState(
     AppConfigEvent event,
   ) async* {
     if (event is OnPageChanged) {
-      yield AppConfigNormalState(selectedPage: event.newRouteName);
+      yield AppConfigNormalState(
+          selectedPage: event.newRouteName, onPageChanged: state.onPageChanged);
     }
-    // else if (event is AuthenticationLogoutRequested) {
-    // yield await _mapAuthenticationStatusChangedToState(event);
-    // }
   }
 }

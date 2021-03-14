@@ -21,46 +21,21 @@ const adaptative =
     "Ces méthodes sont adaptables à tout niveau et dans tous les sports ainsi que le monde de l'entreprise, l'étudiant , l'enfant et le particulier . ";
 
 class HomePage extends StatefulWidget {
-  final ValueChanged<String> onPageChanged;
-
-  const HomePage({Key? key, required this.onPageChanged}) : super(key: key);
-
   @override
   _HomePageState createState() => _HomePageState();
+  HomePage({Key? key});
 }
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  // late AnimationController _controller = AnimationController(
-  //   duration: const Duration(seconds: 5),
-  //   vsync: this,
-  // )..repeat(reverse: true);
-  //
-  // late Animation<Offset> _offsetAnimation = Tween<Offset>(
-  //   end: Offset.zero,
-  //   begin: const Offset(50, 0.0),
-  // ).animate(CurvedAnimation(
-  //   parent: _controller,
-  //   curve: Curves.bounceIn,
-  // ));
-
   @override
   void initState() {
     super.initState();
-    // _offsetAnimation = Tween<Offset>(
-    //   begin: Offset.zero,
-    //   end: const Offset(1000, 0.0),
-    // ).animate(CurvedAnimation(
-    //   parent: _controller,
-    //   curve: Curves.elasticIn,
-    // ));
   }
 
   @override
   void dispose() {
     super.dispose();
-    // _offsetAnimation.
-    // _controller.dispose();
   }
 
   Widget _renderBulletPoint(Widget child) {
@@ -73,12 +48,10 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        drawer: MainDrawer(onPageChanged: widget.onPageChanged),
+        drawer: MainDrawer(),
         body: Column(
           children: [
-            NavBar(
-                currentRouteName: routeHome,
-                onPageChanged: widget.onPageChanged),
+            NavBar(currentRouteName: routeHome),
             Expanded(
               child: Container(
                 color: AppColors.backgroundColor,

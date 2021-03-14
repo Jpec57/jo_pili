@@ -13,7 +13,6 @@ class HomeRouterPage extends Page {
       pageBuilder: (context, animation, animation2) {
         return HomePage(
           key: ValueKey("HomePage"),
-          onPageChanged: onPageChanged,
         );
       },
     );

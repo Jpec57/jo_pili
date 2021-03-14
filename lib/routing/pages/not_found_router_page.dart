@@ -13,7 +13,6 @@ class NotFoundRouterPage extends Page {
       pageBuilder: (context, animation, animation2) {
         return NotFoundPage(
           key: ValueKey("NotFoundPage"),
-          onPageChanged: onPageChanged,
         );
       },
     );
