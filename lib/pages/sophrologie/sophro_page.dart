@@ -32,7 +32,7 @@ class SophroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MainDrawer(),
+      drawer: MainDrawer(onPageChanged: onPageChanged),
       body: Column(
         children: [
           NavBar(currentRouteName: routeSophro, onPageChanged: onPageChanged),

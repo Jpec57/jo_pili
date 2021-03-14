@@ -87,7 +87,7 @@ class _CoachingPageState extends State<CoachingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MainDrawer(),
+      drawer: MainDrawer(onPageChanged: widget.onPageChanged),
       body: Column(
         children: [
           NavBar(

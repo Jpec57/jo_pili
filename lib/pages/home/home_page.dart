@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        drawer: MainDrawer(),
+        drawer: MainDrawer(onPageChanged: widget.onPageChanged),
         body: Column(
           children: [
             NavBar(

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:jo_pili/AppColors.dart';
 import 'package:jo_pili/routes.dart';
 
 class MainDrawer extends StatelessWidget {
+  final ValueChanged<String> onPageChanged;
+
+  const MainDrawer({Key? key, required this.onPageChanged}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Widget _renderRouteTile(RouteInfos routeInfos) {
@@ -21,7 +24,8 @@ class MainDrawer extends StatelessWidget {
               fontFamily: 'Futura'),
         ),
         onTap: () {
-          Get.toNamed(routeInfos.path);
+          // Get.toNamed(routeInfos.path);
+          onPageChanged(routeInfos.path);
         },
       );
     }
@@ -34,7 +38,7 @@ class MainDrawer extends StatelessWidget {
           children: <Widget>[
             InkWell(
               onTap: () {
-                Get.toNamed(routeHome);
+                onPageChanged(routeHome);
               },
               child: DrawerHeader(
                 child: Container(),
