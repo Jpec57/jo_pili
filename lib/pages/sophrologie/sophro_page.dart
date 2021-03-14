@@ -6,7 +6,8 @@ import 'package:jo_pili/widgets/nav_bar.dart';
 import 'package:jpec_base/extensions/extension.dart';
 
 class SophroPage extends StatelessWidget {
-  const SophroPage({Key? key}) : super(key: key);
+  const SophroPage({Key? key, required this.onPageChanged}) : super(key: key);
+  final ValueChanged<String> onPageChanged;
 
   Widget _renderHeadline1(BuildContext context, String text) {
     return Padding(
@@ -34,7 +35,7 @@ class SophroPage extends StatelessWidget {
       drawer: MainDrawer(),
       body: Column(
         children: [
-          NavBar(currentRouteName: routeSophro),
+          NavBar(currentRouteName: routeSophro, onPageChanged: onPageChanged),
           Expanded(
             child: Container(
               color: AppColors.backgroundColor,

@@ -16,6 +16,10 @@ import 'package:jo_pili/widgets/nav_bar.dart';
 //Reportage tv8 Flora
 //https://youtu.be/Ygeo33H_qiQ
 class CoachingPage extends StatefulWidget {
+  final ValueChanged<String> onPageChanged;
+
+  const CoachingPage({Key? key, required this.onPageChanged}) : super(key: key);
+
   @override
   _CoachingPageState createState() => _CoachingPageState();
 }
@@ -86,7 +90,10 @@ class _CoachingPageState extends State<CoachingPage> {
       drawer: MainDrawer(),
       body: Column(
         children: [
-          NavBar(currentRouteName: routeCoaching),
+          NavBar(
+            currentRouteName: routeCoaching,
+            onPageChanged: widget.onPageChanged,
+          ),
           Expanded(
             child: Container(
               color: AppColors.backgroundColor,

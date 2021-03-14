@@ -21,7 +21,9 @@ const adaptative =
     "Ces méthodes sont adaptables à tout niveau et dans tous les sports ainsi que le monde de l'entreprise, l'étudiant , l'enfant et le particulier . ";
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final ValueChanged<String> onPageChanged;
+
+  const HomePage({Key? key, required this.onPageChanged}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -29,18 +31,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller = AnimationController(
-    duration: const Duration(seconds: 5),
-    vsync: this,
-  )..repeat(reverse: true);
-
-  late Animation<Offset> _offsetAnimation = Tween<Offset>(
-    end: Offset.zero,
-    begin: const Offset(50, 0.0),
-  ).animate(CurvedAnimation(
-    parent: _controller,
-    curve: Curves.bounceIn,
-  ));
+  // late AnimationController _controller = AnimationController(
+  //   duration: const Duration(seconds: 5),
+  //   vsync: this,
+  // )..repeat(reverse: true);
+  //
+  // late Animation<Offset> _offsetAnimation = Tween<Offset>(
+  //   end: Offset.zero,
+  //   begin: const Offset(50, 0.0),
+  // ).animate(CurvedAnimation(
+  //   parent: _controller,
+  //   curve: Curves.bounceIn,
+  // ));
 
   @override
   void initState() {
@@ -57,7 +59,8 @@ class _HomePageState extends State<HomePage>
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+    // _offsetAnimation.
+    // _controller.dispose();
   }
 
   Widget _renderBulletPoint(Widget child) {
@@ -74,8 +77,8 @@ class _HomePageState extends State<HomePage>
         body: Column(
           children: [
             NavBar(
-              currentRouteName: routeHome,
-            ),
+                currentRouteName: routeHome,
+                onPageChanged: widget.onPageChanged),
             Expanded(
               child: Container(
                 color: AppColors.backgroundColor,
@@ -103,8 +106,7 @@ class _HomePageState extends State<HomePage>
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           top: 20, bottom: 20),
-                                      child: aboutMeWidget(
-                                          context, _offsetAnimation),
+                                      child: aboutMeWidget(context, null),
                                     ),
                                     Column(
                                       crossAxisAlignment:

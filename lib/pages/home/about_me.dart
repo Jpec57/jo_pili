@@ -1,6 +1,6 @@
 part of 'home_page.dart';
 
-Widget _aboutMeTextWidget(BuildContext context, Animation<Offset> offset) {
+Widget _aboutMeTextWidget(BuildContext context, Animation<Offset>? offset) {
   return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -41,7 +41,7 @@ Widget _aboutMePicture() {
       ));
 }
 
-Widget aboutMeWidget(BuildContext context, Animation<Offset> offset) {
+Widget aboutMeWidget(BuildContext context, Animation<Offset>? offset) {
   return LayoutBuilder(
     builder: (context, constraints) {
       if (constraints.maxWidth < 600) {

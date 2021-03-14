@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:jo_pili/AppColors.dart';
 import 'package:jo_pili/constants.dart';
 import 'package:jo_pili/routes.dart';
 
 class NavBar extends StatelessWidget {
   final String currentRouteName;
-  const NavBar({Key? key, required this.currentRouteName}) : super(key: key);
+  final ValueChanged<String> onPageChanged;
+
+  const NavBar(
+      {Key? key, required this.currentRouteName, required this.onPageChanged})
+      : super(key: key);
 
   Widget _renderNavTabButton(
       BuildContext context, String sectionName, String route) {
@@ -14,7 +17,9 @@ class NavBar extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Get.toNamed(route);
+        // Get.toNamed(route);
+        // Navigator.of(context).pushNamed(route);
+        onPageChanged(route);
       },
       child: Container(
         decoration: isSelected
@@ -61,7 +66,9 @@ class NavBar extends StatelessWidget {
           children: [
             InkWell(
                 onTap: () {
-                  Get.toNamed(routeHome);
+                  onPageChanged(routeHome);
+                  // Navigator.of(context).pushNamed(routeHome);
+                  // Get.toNamed(routeHome);
                 },
                 child: Image.asset("assets/images/bannier.png")),
             Expanded(
