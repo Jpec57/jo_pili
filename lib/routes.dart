@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 const String routeHome = '/home';
 const String routeSophro = '/sophrologie';
 const String routeCoaching = '/coaching';
+const String routeStartrust = '/startrust';
 const String routeNotFound = '/404';
 
 class RouteInfos {
@@ -14,28 +15,6 @@ class RouteInfos {
 }
 
 class RouteGenerator {
-  // static Route<dynamic> generateRoute(RouteSettings settings) {
-  //   print("setting name ${settings.name}");
-  //   switch (settings.name) {
-  //     case routeCoaching:
-  //       html.window.history.pushState(null, "Coaching", routeCoaching);
-  //       return NoTransitionRoute(builder: (_) => CoachingPage());
-  //     case routeHome:
-  //       html.window.history.pushState(null, "Accueil", routeHome);
-  //       return NoTransitionRoute(builder: (_) => HomePage());
-  //     case routeSophro:
-  //       html.window.history.pushState(null, "Sophrologie", routeSophro);
-  //
-  //       return NoTransitionRoute(builder: (_) => SophroPage());
-  //     case routeNotFound:
-  //       html.window.history.pushState(null, "404", routeNotFound);
-  //
-  //       return NoTransitionRoute(builder: (_) => NotFoundPage());
-  //     default:
-  //       throw new Exception("Need to implement page ${settings.name}");
-  //   }
-  // }
-
   static List<RouteInfos> getMainNavigationRoutes() {
     return [
       RouteInfos(title: 'Accueil', path: routeHome, icon: Icon(Icons.home)),
@@ -47,6 +26,10 @@ class RouteGenerator {
           title: 'Coaching',
           path: routeCoaching,
           icon: Icon(Icons.fitness_center_rounded)),
+      RouteInfos(
+          title: 'Startrust',
+          path: routeStartrust,
+          icon: Icon(Icons.accessibility)),
     ];
   }
 

@@ -29,6 +29,9 @@ class MyRouteInformationParser extends RouteInformationParser<AppRoutePath>
     if (uri.path == routeSophro) {
       return AppRoutePath.sophro();
     }
+    if (uri.path == routeStartrust) {
+      return AppRoutePath.startrust();
+    }
 
     // // Handle '/book/:id'
     // if (uri.pathSegments.length == 2) {
@@ -56,6 +59,9 @@ class MyRouteInformationParser extends RouteInformationParser<AppRoutePath>
     }
     if (path.isSophroPage) {
       return RouteInformation(location: routeSophro);
+    }
+    if (path.isStartrustPage) {
+      return RouteInformation(location: routeStartrust);
     }
     return RouteInformation(location: routeNotFound);
   }

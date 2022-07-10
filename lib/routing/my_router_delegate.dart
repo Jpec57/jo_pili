@@ -7,6 +7,7 @@ import 'package:jo_pili/routing/pages/coaching_router_page.dart';
 import 'package:jo_pili/routing/pages/home_router_page.dart';
 import 'package:jo_pili/routing/pages/not_found_router_page.dart';
 import 'package:jo_pili/routing/pages/sophro_router_page.dart';
+import 'package:jo_pili/routing/pages/startrust_router_page.dart';
 
 class MyRouterDelegate extends RouterDelegate<AppRoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<AppRoutePath> {
@@ -32,6 +33,9 @@ class MyRouterDelegate extends RouterDelegate<AppRoutePath>
     if (_selectedPage == routeSophro) {
       return AppRoutePath.sophro();
     }
+    if (_selectedPage == routeStartrust) {
+      return AppRoutePath.startrust();
+    }
     return AppRoutePath.unknown();
   }
 
@@ -49,13 +53,14 @@ class MyRouterDelegate extends RouterDelegate<AppRoutePath>
                 SophroRouterPage(_handlePageChange)
               else if (_selectedPage == routeCoaching)
                 CoachingRouterPage(_handlePageChange)
+              else if (_selectedPage == routeStartrust)
+                StartrustRouterPage(_handlePageChange)
               else if (_selectedPage == routeHome)
                 HomeRouterPage(_handlePageChange)
               else
                 NotFoundRouterPage(_handlePageChange)
             ],
             onPopPage: (route, result) {
-              //TODO never called...
               if (!route.didPop(result)) {
                 return false;
               }

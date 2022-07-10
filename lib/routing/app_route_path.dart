@@ -15,6 +15,10 @@ class AppRoutePath {
       : selectedRoute = routeCoaching,
         isUnknown = false;
 
+  AppRoutePath.startrust()
+      : selectedRoute = routeStartrust,
+        isUnknown = false;
+
   AppRoutePath.unknown()
       : selectedRoute = routeNotFound,
         isUnknown = true;
@@ -23,6 +27,7 @@ class AppRoutePath {
 
   bool get isCoachingPage => selectedRoute == routeCoaching;
   bool get isSophroPage => selectedRoute == routeSophro;
+  bool get isStartrustPage => selectedRoute == routeStartrust;
 
   @override
   String toString() {
